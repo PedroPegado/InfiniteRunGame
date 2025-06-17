@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 8879316}
   - component: {fileID: 8879315}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: ObjectsSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,13 +154,13 @@ MonoBehaviour:
     spawnRateRange: {x: 3, y: 4}
   - prefab: {fileID: 501445139102016999, guid: 9a4239f80d5665044a794f612e9264a8, type: 3}
     spawnOffset: {x: 0, y: -0.35, z: 0}
-    spawnRateRange: {x: 1, y: 1.5}
+    spawnRateRange: {x: 1, y: 1.25}
   - prefab: {fileID: 6098598093883083701, guid: 352a9bd8b3fc47d418bb21da6efed772, type: 3}
     spawnOffset: {x: 0, y: -0.35, z: 0}
-    spawnRateRange: {x: 1, y: 1.5}
+    spawnRateRange: {x: 1, y: 1.25}
   - prefab: {fileID: 6098598093883083701, guid: 0b9da612947d36745a9280e5a764ded7, type: 3}
     spawnOffset: {x: 0, y: -0.35, z: 0}
-    spawnRateRange: {x: 1, y: 1.5}
+    spawnRateRange: {x: 1, y: 1.25}
   - prefab: {fileID: 2629012191213343881, guid: 834619475e5afe446a0c97902901391d, type: 3}
     spawnOffset: {x: 0, y: -0.06, z: 0}
     spawnRateRange: {x: 2, y: 3}
@@ -743,7 +743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &421449825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2680,8 +2680,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 9137985313815248438, guid: f9c950d65076ba145b4a00ec80786f7b, type: 3}
-  spawnInterval: 0.75
-  maxEnemies: 10
+  spawnInterval: 0.6
+  maxEnemies: 8
   spawnAreaMin: {x: -9, y: 4.9}
   spawnAreaMax: {x: 8.47, y: 7.8}
 --- !u!4 &1824339180
