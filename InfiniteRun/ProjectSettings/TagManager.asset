@@ -6,15 +6,17 @@ TagManager:
   tags:
   - Ground
   - DamageObject
+  - Walls
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
+  - Obstacles
+  - Player
   - 
   - 
   - 
@@ -42,6 +44,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 246929977
     locked: 0
   m_RenderingLayers:
   - Default

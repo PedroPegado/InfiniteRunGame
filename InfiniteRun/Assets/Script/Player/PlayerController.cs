@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class PlayerController : MonoBehaviour
     public float m_rotationDuration = .5f;
     private float m_currentZRotation = 0f;
     public string lvlName;
+    public Transform m_visual;
+    public GameObject m_bullet;
+    public float m_bulletSpeed = 10f;
+    public GameObject m_canvasDie;
+    public GameObject m_canvasMainMenu;
 
     private void Start()
     {
@@ -21,11 +27,35 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started && m_isGrounded)
+        if (context.performed && m_isGrounded)
         {
             m_playerRb.linearVelocity = new Vector2(m_playerRb.linearVelocity.x, m_jumpForce);
             m_currentZRotation -= 90f;
             StartCoroutine(RotateZSmooth(m_currentZRotation, m_rotationDuration));
+        }
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            mouseWorldPos.z = 0f;
+
+            Vector2 direction = (mouseWorldPos - transform.position).normalized;
+
+            GameObject bullet = Instantiate(m_bullet, transform.position, Quaternion.identity);
+
+            Collider2D playerCollider = GetComponent<Collider2D>();
+            Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
+
+            if (playerCollider != null && bulletCollider != null)
+            {
+                Physics2D.IgnoreCollision(bulletCollider, playerCollider);
+            }
+
+            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+            bulletRb.linearVelocity = direction * m_bulletSpeed;
         }
     }
 
@@ -50,9 +80,32 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             m_isGrounded = true;
+
+            //m_visual.localScale = Vector3.one;
+
+            //Vector3 originalPos = m_visual.localPosition;
+            //float squashY = 0.1f;
+
+            //float zRot = m_playerTrans.eulerAngles.z;
+
+            //bool isUpsideDown = Mathf.Abs(Mathf.DeltaAngle(zRot, 180f)) < 10f;
+
+            //if (isUpsideDown)
+            //{
+            //    squashY = -squashY;
+            //}
+
+            //Sequence bounce = DOTween.Sequence();
+            //bounce.Append(m_visual.DOScale(new Vector3(1.2f, 0.8f, 1f), 0.1f));
+            //bounce.Join(m_visual.DOLocalMoveY(originalPos.y - squashY, 0.1f));
+            //bounce.Append(m_visual.DOScale(Vector3.one, 0.1f));
+            //bounce.Join(m_visual.DOLocalMoveY(originalPos.y, 0.1f));
         }
-        if (collision.gameObject.CompareTag("DamageObject"))
-            SceneManager.LoadScene(lvlName);
+
+        if (collision.gameObject.CompareTag("DamageObject") || (collision.gameObject.CompareTag("Enemy"))){
+            m_canvasDie.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -61,5 +114,12 @@ public class PlayerController : MonoBehaviour
         {
             m_isGrounded = false;
         }
+    }
+
+    public void ResetLvl(string lvl)
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(lvl);
+        m_canvasDie.SetActive(false);
     }
 }

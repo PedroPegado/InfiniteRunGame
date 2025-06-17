@@ -3,34 +3,58 @@ using UnityEngine;
 
 public class SpawnerController : MonoBehaviour
 {
-    public List<GameObject> m_Thorns = new List<GameObject>();
-    public float spawnRate = 3;
-    private float timer = 0;
-
+    public List<SpawnableObject> spawnables = new List<SpawnableObject>();
+    private float timer = 0f;
+    private float currentSpawnRate;
+    private SpawnableObject nextObjectToSpawn;
+    public LayerMask spawnCheckMask;
     private void Start()
     {
-        spawnThorn();
+        PickNextSpawn();
     }
 
     private void FixedUpdate()
     {
-        if (timer < spawnRate)
+        timer += Time.deltaTime;
+
+        if (timer >= currentSpawnRate)
         {
-            timer += Time.deltaTime;
-        }
-        else
-        {
-            spawnThorn();
-            spawnRate = Random.Range(3, 4.5f);
-            timer = 0;
+            SpawnObject(nextObjectToSpawn);
+            PickNextSpawn();
+            timer = 0f;
         }
     }
 
-    void spawnThorn()
+    void PickNextSpawn()
     {
-        int index = Random.Range(0, m_Thorns.Count);
-        GameObject selectedThorn = m_Thorns[index];
+        int index = Random.Range(0, spawnables.Count);
+        nextObjectToSpawn = spawnables[index];
+    }
 
-        Instantiate(selectedThorn, transform.position, Quaternion.identity);
+    void SpawnObject(SpawnableObject spawnable)
+    {
+        Vector3 spawnPos = transform.position + spawnable.spawnOffset;
+
+        Collider2D hit = Physics2D.OverlapCircle(spawnPos, 0.5f, spawnCheckMask);
+
+        if (hit == null)
+        {
+            Instantiate(spawnable.prefab, spawnPos, Quaternion.identity);
+        }
+
+        currentSpawnRate = Random.Range(
+            nextObjectToSpawn.spawnRateRange.x,
+            nextObjectToSpawn.spawnRateRange.y
+        );
+    }
+
+
+    [System.Serializable]
+    public class SpawnableObject
+    {
+        public GameObject prefab;
+        public Vector3 spawnOffset;
+
+        public Vector2 spawnRateRange;
     }
 }

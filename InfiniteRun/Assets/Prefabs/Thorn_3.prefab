@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5497822808341896952}
   - component: {fileID: 7617212998474490749}
   - component: {fileID: 4648219240272764771}
-  - component: {fileID: 7338818217377018914}
-  m_Layer: 0
+  - component: {fileID: 2204192438671796555}
+  m_Layer: 6
   m_Name: Thorn_3
   m_TagString: DamageObject
   m_Icon: {fileID: 0}
@@ -103,9 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266522ed5f3934247948ff356ab74485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
   deadZone: -45
---- !u!60 &7338818217377018914
+--- !u!60 &2204192438671796555
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,9 +150,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5773587}
+    - - {x: 2.1945848, y: 0.5777231}
+      - {x: 1.1122115, y: 0.7501227}
+      - {x: 0, y: 0.6007198}
       - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+      - {x: 2.7146351, y: -0.2933389}
   m_UseDelaunayMesh: 0
 --- !u!1 &6942637653017051006
 GameObject:
@@ -166,7 +167,7 @@ GameObject:
   - component: {fileID: 7358839422567560315}
   - component: {fileID: 7248043900772373669}
   - component: {fileID: 4446729640280685229}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: twoThorns (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +305,7 @@ GameObject:
   - component: {fileID: 1810916228848858725}
   - component: {fileID: 1624446883113762384}
   - component: {fileID: 9028126488595091640}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: twoThorns (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

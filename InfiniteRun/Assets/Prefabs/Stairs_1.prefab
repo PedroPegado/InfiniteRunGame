@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4069255649102898856}
   - component: {fileID: 968363322983712229}
   - component: {fileID: 8498756109195860866}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs_1 (1)
   m_TagString: DamageObject
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 2920063731096283899}
   - component: {fileID: 847080733935438739}
   - component: {fileID: 7744293283087676269}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs_1
   m_TagString: DamageObject
   m_Icon: {fileID: 0}
@@ -239,7 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 266522ed5f3934247948ff356ab74485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   deadZone: -45
 --- !u!61 &7744293283087676269
 BoxCollider2D:
@@ -298,7 +297,7 @@ GameObject:
   - component: {fileID: 3805499216709575079}
   - component: {fileID: 3546889418268348707}
   - component: {fileID: 8301483993500979501}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: topStair
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -432,7 +431,7 @@ GameObject:
   - component: {fileID: 8341009145275600144}
   - component: {fileID: 3261827771226212240}
   - component: {fileID: 898189714975770906}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: topStair
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -566,7 +565,7 @@ GameObject:
   - component: {fileID: 9041720522691370247}
   - component: {fileID: 6433563439279831062}
   - component: {fileID: 3606062660602926645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs_1 (1)
   m_TagString: DamageObject
   m_Icon: {fileID: 0}
@@ -701,7 +700,7 @@ GameObject:
   - component: {fileID: 7107345876363336438}
   - component: {fileID: 1345703734170474156}
   - component: {fileID: 7538051362809495753}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: topStair
   m_TagString: Ground
   m_Icon: {fileID: 0}
