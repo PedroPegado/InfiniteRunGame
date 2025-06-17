@@ -8,7 +8,7 @@ public class DistanceCounter : MonoBehaviour
     public TextMeshProUGUI distanceText;
     private int distance = 0;
     private float timer = 0f;
-    private float timePerMeter = 0.2f;
+    private float timePerMeter = 0.1f;
 
     void Start()
     {

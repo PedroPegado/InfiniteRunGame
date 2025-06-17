@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ThornController : MonoBehaviour
 {
-    private float moveSpeed = 7f;
+    private float moveSpeed = 10f;
     public float deadZone = -30;
     void Update()
     {
