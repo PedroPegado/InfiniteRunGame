@@ -25,8 +25,19 @@ public class PlayerController : MonoBehaviour
     public Transform    m_bulletSpawnPoint;
     public Transform                        m_gunPivot;
     [SerializeField] private VisualEffect   m_groundDust;
-    //[SerializeField] private VisualEffect   m_playerTrail;
+    [SerializeField] private VisualEffect m_playerTrail;
     [SerializeField] private Transform      m_dustAnchor;
+
+    [Header("Jump Settings")]
+    public float m_jumpInitialForce = 7f;
+    public float m_jumpHoldForce = 15f;
+    public float m_maxJumpTime = 0.3f;
+
+    private bool m_isJumping = false;
+    private float m_jumpTimeCounter = 0f;
+    private bool m_jumpPressed = false;
+    private bool m_jumpHeld = false;
+    private bool m_jumpReleased = false;
 
     private void Start()
     {
@@ -38,20 +49,20 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (m_playerDirection.sqrMagnitude > 0.1)
-        {
             MovePlayer();
-        }
+
+        HandleJump();
 
         if (m_isGrounded)
-        {
             m_groundDust.Play();
-        }
         else if (!m_isGrounded || m_playerDirection.sqrMagnitude < 0.1)
-        {
             m_groundDust.Stop();
-        }
 
-        m_dustAnchor.position = new Vector3(m_playerTrans.position.x - 0.45f, m_playerTrans.position.y - 0.45f, m_playerTrans.position.z);
+        m_dustAnchor.position = new Vector3(
+            m_playerTrans.position.x - 0.45f,
+            m_playerTrans.position.y - 0.45f,
+            m_playerTrans.position.z
+        );
 
         RotateGunAroundPlayer();
     }
@@ -70,13 +81,20 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && m_isGrounded)
+        if (context.started)
         {
-            m_playerRb.linearVelocity = new Vector2(m_playerRb.linearVelocity.x, m_jumpForce);
-            m_currentZRotation -= 90f;
-            StartCoroutine(RotateZSmooth(m_currentZRotation, m_rotationDuration));
+            m_jumpPressed = true;
+            m_jumpHeld = true;
+        }
+
+        if (context.canceled)
+        {
+            m_jumpHeld = false;
+            m_jumpReleased = true;
         }
     }
+
+
 
     public void OnShoot(InputAction.CallbackContext context)
     {
@@ -176,5 +194,39 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         m_gunPivot.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+
+    void HandleJump()
+    {
+        if (m_jumpPressed && m_isGrounded)
+        {
+            m_isJumping = true;
+            m_jumpTimeCounter = m_maxJumpTime;
+            m_playerRb.linearVelocity = new Vector2(m_playerRb.linearVelocity.x, m_jumpInitialForce);
+
+            m_currentZRotation -= 90f;
+            StartCoroutine(RotateZSmooth(m_currentZRotation, m_rotationDuration));
+        }
+
+        if (m_isJumping && m_jumpHeld)
+        {
+            if (m_jumpTimeCounter > 0)
+            {
+                m_playerRb.linearVelocity = new Vector2(m_playerRb.linearVelocity.x, m_jumpHoldForce);
+                m_jumpTimeCounter -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                m_isJumping = false;
+            }
+        }
+
+        if (m_jumpReleased)
+        {
+            m_isJumping = false;
+        }
+
+        m_jumpPressed = false;
+        m_jumpReleased = false;
     }
 }

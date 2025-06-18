@@ -3,11 +3,12 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class EnemyController : MonoBehaviour
 {
     public float m_moveSpeedEnemy = 5f;
-    public Vector2 m_enemyDirection;
+    private Vector2 m_enemyDirection;
     private Rigidbody2D m_enemyRb;
     private CircleCollider2D m_enemyCollider;
     private SpriteRenderer m_enemySR;
@@ -15,7 +16,8 @@ public class EnemyController : MonoBehaviour
     private bool m_isDead = false;
     public event Action OnDeath;
     public DetectionArea _detectionArea;
-    
+    [SerializeField] private VisualEffect m_enemyDie;
+    [SerializeField] private VisualEffect m_enemyTrail;
 
     void Start()
     {
@@ -43,13 +45,15 @@ public class EnemyController : MonoBehaviour
         if (m_isDead) return;
         m_isDead = true;
 
+        m_enemyTrail.Stop();
         m_enemyDirection = Vector2.zero;
         m_enemyRb.linearVelocity = Vector2.zero;
         m_moveSpeedEnemy = 0;
         OnDeath?.Invoke();
+        m_enemyDie.Play();
 
         m_enemyCollider.enabled = false;
-        m_enemySR.DOFade(0f, 0.5f);
+        m_enemySR.DOFade(0f, 0.1f);
         StartCoroutine(RemoveAfterAnimation());
     }
 

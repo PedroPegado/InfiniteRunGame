@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4491649718787973917}
   - component: {fileID: 9000294560882413757}
   - component: {fileID: 2142485177050293169}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 371ca697c32acb746b96a38740163caa, type: 2}
+  - {fileID: 2100000, guid: 42e6e9b2d04ca544eb39d81bdaea62b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -5,7 +5,7 @@ public class BulletController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (collision.gameObject.CompareTag("Walls") || (collision.gameObject.CompareTag("Enemy") || (collision.gameObject.CompareTag("DamageObject") || (collision.gameObject.CompareTag("Ground"))))){
+        if (collision.gameObject.CompareTag("Walls") || (collision.gameObject.CompareTag("Enemy") || (collision.gameObject.CompareTag("DamageObject")))){
             Destroy(gameObject);
         }
 
