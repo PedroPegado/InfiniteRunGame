@@ -149,20 +149,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnables:
-  - prefab: {fileID: 2629012191213343881, guid: d445aae84e0cf9143b50ade22c4faa25, type: 3}
-    spawnOffset: {x: 0, y: -0.06, z: 0}
+  - prefab: {fileID: 6816339652669768998, guid: c621f8b087c6d144ba0ff767889c1de4, type: 3}
+    spawnOffset: {x: 0, y: -0.6, z: 0}
+    spawnRateRange: {x: 1, y: 1.25}
+  - prefab: {fileID: 4537158890626353669, guid: 9249a1e286b42dc44bf5a2a2b34b954e, type: 3}
+    spawnOffset: {x: 0, y: 1.05, z: 0}
+    spawnRateRange: {x: 1, y: 1.25}
+  - prefab: {fileID: 4537158890626353669, guid: 4ef726fedc3a8e84ca49022a46376cd2, type: 3}
+    spawnOffset: {x: 0, y: 1.05, z: 0}
+    spawnRateRange: {x: 1, y: 1.25}
+  - prefab: {fileID: 8058998720439834766, guid: f29081524014cbd4a91afaa5401693a6, type: 3}
+    spawnOffset: {x: 0, y: 0.45, z: 0}
     spawnRateRange: {x: 3, y: 4}
-  - prefab: {fileID: 501445139102016999, guid: 9a4239f80d5665044a794f612e9264a8, type: 3}
-    spawnOffset: {x: 0, y: -0.35, z: 0}
-    spawnRateRange: {x: 1, y: 1.25}
-  - prefab: {fileID: 6098598093883083701, guid: 352a9bd8b3fc47d418bb21da6efed772, type: 3}
-    spawnOffset: {x: 0, y: -0.35, z: 0}
-    spawnRateRange: {x: 1, y: 1.25}
-  - prefab: {fileID: 6098598093883083701, guid: 0b9da612947d36745a9280e5a764ded7, type: 3}
-    spawnOffset: {x: 0, y: -0.35, z: 0}
-    spawnRateRange: {x: 1, y: 1.25}
-  - prefab: {fileID: 2629012191213343881, guid: 834619475e5afe446a0c97902901391d, type: 3}
-    spawnOffset: {x: 0, y: -0.15, z: 0}
+  - prefab: {fileID: 3907816556096203668, guid: 115fe50fb5617df44b020ffb39816b7b, type: 3}
+    spawnOffset: {x: 0, y: 0.45, z: 0}
     spawnRateRange: {x: 2, y: 3}
   spawnCheckMask:
     serializedVersion: 2
@@ -427,7 +427,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1307,7 +1307,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.21146315, g: 0.3053281, b: 0.4528302, a: 0}
+  m_BackGroundColor: {r: 0.13149695, g: 0.13543628, b: 0.14150941, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2497,7 +2497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258239ea0aa98444ba15b076d2329906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_jumpForce: 7.5
+  m_jumpForce: 8
   m_rotationDuration: 0.45
   lvlName: SampleScene
   m_visual: {fileID: 1779003651}
@@ -2749,7 +2749,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2771,7 +2771,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: a993ab748b71b96408884ff3933f330b, type: 3}
-  m_Color: {r: 0.54337585, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2902,7 +2902,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 371ca697c32acb746b96a38740163caa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2924,7 +2924,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: a993ab748b71b96408884ff3933f330b, type: 3}
-  m_Color: {r: 0.54337585, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3503,6 +3503,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6176274344165613459, guid: d9e9253573a4bee43aafef5481303bc0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dd788c196f741b84e9ebcfed4637e39f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5638959490594779660, guid: d9e9253573a4bee43aafef5481303bc0, type: 3}
@@ -3516,10 +3520,10 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1696091953}
-  - {fileID: 1830009716}
   - {fileID: 1213522576}
   - {fileID: 1161594869}
   - {fileID: 1666666332}
+  - {fileID: 1830009716}
   - {fileID: 1441714872}
   - {fileID: 226495138}
   - {fileID: 29829125}

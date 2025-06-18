@@ -23,9 +23,9 @@ public class PlayerController : MonoBehaviour
     public float        m_playerSpeed = 5f;
     public Transform    m_gunTransform;
     public Transform    m_bulletSpawnPoint;
-    public Transform    m_gunPivot;
-    [SerializeField] private VisualEffect m_groundDust;
-    [SerializeField] private Transform m_dustAnchor;
+    public Transform                        m_gunPivot;
+    [SerializeField] private VisualEffect   m_groundDust;
+    [SerializeField] private Transform      m_dustAnchor;
 
     private void Start()
     {

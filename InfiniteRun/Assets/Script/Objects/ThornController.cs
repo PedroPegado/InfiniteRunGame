@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ThornController : MonoBehaviour
 {
-    private float moveSpeed = 10f;
+    private float moveSpeed = 9f;
     public float deadZone = -30;
     void Update()
     {
@@ -11,7 +11,7 @@ public class ThornController : MonoBehaviour
 
         if (transform.position.x < deadZone)
         {
-            Debug.Log("thorn deleted");
+            Debug.Log("object deleted");
             Destroy(gameObject);
         }
     }

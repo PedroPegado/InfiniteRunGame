@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
-    public float m_moveSpeedEnemy = 3f;
+    public float m_moveSpeedEnemy = 5f;
     public Vector2 m_enemyDirection;
     private Rigidbody2D m_enemyRb;
     private CircleCollider2D m_enemyCollider;
