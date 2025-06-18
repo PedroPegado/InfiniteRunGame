@@ -150,13 +150,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnables:
   - prefab: {fileID: 6816339652669768998, guid: c621f8b087c6d144ba0ff767889c1de4, type: 3}
-    spawnOffset: {x: 0, y: -0.6, z: 0}
+    spawnOffset: {x: 0, y: -0.55, z: 0}
     spawnRateRange: {x: 1, y: 1.25}
   - prefab: {fileID: 4537158890626353669, guid: 9249a1e286b42dc44bf5a2a2b34b954e, type: 3}
-    spawnOffset: {x: 0, y: 1.05, z: 0}
+    spawnOffset: {x: 0, y: 1.2, z: 0}
     spawnRateRange: {x: 1, y: 1.25}
   - prefab: {fileID: 4537158890626353669, guid: 4ef726fedc3a8e84ca49022a46376cd2, type: 3}
-    spawnOffset: {x: 0, y: 1.05, z: 0}
+    spawnOffset: {x: 0, y: 1.2, z: 0}
     spawnRateRange: {x: 1, y: 1.25}
   - prefab: {fileID: 8058998720439834766, guid: f29081524014cbd4a91afaa5401693a6, type: 3}
     spawnOffset: {x: 0, y: 0.45, z: 0}

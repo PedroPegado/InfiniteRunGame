@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public Transform    m_bulletSpawnPoint;
     public Transform                        m_gunPivot;
     [SerializeField] private VisualEffect   m_groundDust;
+    //[SerializeField] private VisualEffect   m_playerTrail;
     [SerializeField] private Transform      m_dustAnchor;
 
     private void Start()
