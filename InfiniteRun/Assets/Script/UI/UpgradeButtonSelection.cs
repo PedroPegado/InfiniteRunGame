@@ -1,12 +1,21 @@
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 public class UpgradeButtonSelection : MonoBehaviour
 {
     public TextMeshProUGUI m_title;
     public TextMeshProUGUI m_description;
     private Upgrades m_actUpgrade;
-    private DistanceCounter m_distanceCounter;
+    public DistanceCounter m_distanceCounter;
+    private RectTransform m_canvasTransform;
+
+    private void Start()
+    {
+        m_canvasTransform = GetComponent<RectTransform>();
+
+        m_canvasTransform.DOAnchorPosY(0f, 0.5f).SetEase(Ease.OutBack).SetUpdate(true);
+    }
 
     public void SetData(Upgrades upgrade)
     {
@@ -22,6 +31,7 @@ public class UpgradeButtonSelection : MonoBehaviour
 
         if (m_distanceCounter != null) {
             m_distanceCounter.ResumeGame();
+            Time.timeScale = 1f;
         }
     }
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ef6e232cc598347a4b3e5f0eac86a8, type: 3}
   m_Name: AttackSpeed
   m_EditorClassIdentifier: 
-  upgradeName: Attack Speed
-  description: Increase your attack speed
+  upgradeName: Bullet Cadence
+  description: Increase your bullet cadence
   m_lvlAct: 0
   m_lvlMax: 3
   m_valueByValue: 0.25

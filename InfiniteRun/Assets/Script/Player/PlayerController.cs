@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.VFX;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public Upgrades m_attackSpeed;
     public Upgrades m_jumpUpgrade;
     public Upgrades m_bulletSizeUpgrade;
+    public ListUpgrade m_listUpgrade;
     private bool m_canShoot = true;
     private float m_delayToShoot = 1f;
 
@@ -41,8 +43,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip m_shootSound;
 
     [Header("Jump Settings")]
-    public float m_jumpInitialForce = 4f;
-    public float m_jumpHoldForce = 5f; 
+    public float m_jumpInitialForce = 3f;
+    public float m_jumpHoldForce = 4f; 
     public float m_maxJumpTime = 0.3f;
 
     private bool m_isJumping = false;
@@ -201,6 +203,11 @@ public class PlayerController : MonoBehaviour
 
             if (m_sfxSource != null && m_dieSound != null) {
                 m_sfxSource.PlayOneShot(m_dieSound, 0.1f);
+            }
+
+            foreach (var upgrade in m_listUpgrade.UpgradeList)
+            {
+                upgrade.m_lvlAct = 0;
             }
 
             m_canvasDie.SetActive(true);

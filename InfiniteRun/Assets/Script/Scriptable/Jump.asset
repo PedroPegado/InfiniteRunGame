@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Increase your jumps
   m_lvlAct: 0
   m_lvlMax: 3
-  m_valueByValue: 1
+  m_valueByValue: 0.5
