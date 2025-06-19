@@ -11,7 +11,6 @@ public class ThornController : MonoBehaviour
 
         if (transform.position.x < deadZone)
         {
-            Debug.Log("object deleted");
             Destroy(gameObject);
         }
     }

@@ -18,15 +18,17 @@ public class PlayerController : MonoBehaviour
     public GameObject   m_bullet;
     public float        m_bulletSpeed = 10f;
     public GameObject   m_canvasDie;
-    public GameObject   m_canvasMainMenu;
     private Vector2     m_playerDirection;
     public float        m_playerSpeed = 5f;
     public Transform    m_gunTransform;
     public Transform    m_bulletSpawnPoint;
     public Transform                        m_gunPivot;
     [SerializeField] private VisualEffect   m_groundDust;
-    [SerializeField] private VisualEffect m_playerTrail;
     [SerializeField] private Transform      m_dustAnchor;
+    [SerializeField] private AudioSource m_musicLoop;
+    [SerializeField] private AudioSource m_sfxSource;
+    [SerializeField] private AudioClip m_dieSound;
+    [SerializeField] private AudioClip m_shootSound;
 
     [Header("Jump Settings")]
     public float m_jumpInitialForce = 7f;
@@ -39,17 +41,24 @@ public class PlayerController : MonoBehaviour
     private bool m_jumpHeld = false;
     private bool m_jumpReleased = false;
 
+    [Header("Jump Buffer")]
+    public float m_jumpBufferTime = 0.1f;
+    private float m_jumpBufferTimer = 0f;
+
+
     private void Start()
     {
         m_playerRb = GetComponent<Rigidbody2D>();
         m_playerTrans = GetComponent<Transform>();
-        m_canvasMainMenu.SetActive(false);
     }
 
     private void FixedUpdate()
     {
         if (m_playerDirection.sqrMagnitude > 0.1)
             MovePlayer();
+
+        if (m_jumpBufferTimer > 0)
+            m_jumpBufferTimer -= Time.fixedDeltaTime;
 
         HandleJump();
 
@@ -83,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
-            m_jumpPressed = true;
+            m_jumpBufferTimer = m_jumpBufferTime;
             m_jumpHeld = true;
         }
 
@@ -95,11 +104,11 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
     public void OnShoot(InputAction.CallbackContext context)
     {
         if (context.started)
         {
+            m_sfxSource.PlayOneShot(m_shootSound, 0.1f);
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             mouseWorldPos.z = 0f;
 
@@ -165,6 +174,16 @@ public class PlayerController : MonoBehaviour
         }
 
         if (collision.gameObject.CompareTag("DamageObject") || (collision.gameObject.CompareTag("Enemy"))){
+            
+            if (m_musicLoop != null)
+            {
+                m_musicLoop.Stop();
+            }
+
+            if (m_sfxSource != null && m_dieSound != null) {
+                m_sfxSource.PlayOneShot(m_dieSound, 0.1f);
+            }
+
             m_canvasDie.SetActive(true);
             Time.timeScale = 0f;
         }
@@ -198,14 +217,15 @@ public class PlayerController : MonoBehaviour
 
     void HandleJump()
     {
-        if (m_jumpPressed && m_isGrounded)
+        if (m_jumpBufferTimer > 0 && m_isGrounded)
         {
             m_isJumping = true;
             m_jumpTimeCounter = m_maxJumpTime;
             m_playerRb.linearVelocity = new Vector2(m_playerRb.linearVelocity.x, m_jumpInitialForce);
-
             m_currentZRotation -= 90f;
             StartCoroutine(RotateZSmooth(m_currentZRotation, m_rotationDuration));
+
+            m_jumpBufferTimer = 0f;
         }
 
         if (m_isJumping && m_jumpHeld)

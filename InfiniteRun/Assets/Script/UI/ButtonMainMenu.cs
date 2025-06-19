@@ -1,21 +1,13 @@
-using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class ButtonMainMenu : MonoBehaviour
 {
-    [SerializeField] private Button m_button;
-    public Canvas mainMenuCanvas;
-    public CanvasGroup mainMenuCanvasGroup;
-    void Start()
+    private void Start()
     {
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
     }
-
     public void StartGame()
     {
-        mainMenuCanvas.enabled = false;
-        mainMenuCanvasGroup.DOFade(0, 3);
-        Time.timeScale = 1f;
+        SceneManager.LoadScene("SampleScene");
     }
 }
