@@ -25,14 +25,24 @@ public class PlayerController : MonoBehaviour
     public Transform                        m_gunPivot;
     [SerializeField] private VisualEffect   m_groundDust;
     [SerializeField] private Transform      m_dustAnchor;
+
+    [Header("Upgrades Settings")]
+    public Upgrades m_attackSpeed;
+    public Upgrades m_jumpUpgrade;
+    public Upgrades m_bulletSizeUpgrade;
+    private bool m_canShoot = true;
+    private float m_delayToShoot = 1f;
+
+
+    [Header("Audio Settings")]
     [SerializeField] private AudioSource m_musicLoop;
     [SerializeField] private AudioSource m_sfxSource;
     [SerializeField] private AudioClip m_dieSound;
     [SerializeField] private AudioClip m_shootSound;
 
     [Header("Jump Settings")]
-    public float m_jumpInitialForce = 7f;
-    public float m_jumpHoldForce = 15f;
+    public float m_jumpInitialForce = 4f;
+    public float m_jumpHoldForce = 5f; 
     public float m_maxJumpTime = 0.3f;
 
     private bool m_isJumping = false;
@@ -106,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && m_canShoot)
         {
             m_sfxSource.PlayOneShot(m_shootSound, 0.1f);
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -115,6 +125,7 @@ public class PlayerController : MonoBehaviour
             Vector2 direction = (mouseWorldPos - transform.position).normalized;
 
             GameObject bullet = Instantiate(m_bullet, m_bulletSpawnPoint.position, m_gunPivot.rotation);
+            bullet.transform.localScale = new Vector3(bullet.transform.localScale.x + m_bulletSizeUpgrade.getValue(), bullet.transform.localScale.y + m_bulletSizeUpgrade.getValue(), bullet.transform.localScale.z + m_bulletSizeUpgrade.getValue());
             bullet.GetComponent<Rigidbody2D>().linearVelocity = m_gunPivot.right * m_bulletSpeed;
 
             Collider2D playerCollider = GetComponent<Collider2D>();
@@ -127,7 +138,15 @@ public class PlayerController : MonoBehaviour
 
             Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
             bulletRb.linearVelocity = direction * m_bulletSpeed;
+            m_canShoot = false;
+            StartCoroutine(DelayToShoot(m_delayToShoot - m_attackSpeed.getValue()));
         }
+    }
+
+    IEnumerator DelayToShoot(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        m_canShoot = true;
     }
 
     private IEnumerator RotateZSmooth(float targetZ, float duration)
@@ -221,7 +240,7 @@ public class PlayerController : MonoBehaviour
         {
             m_isJumping = true;
             m_jumpTimeCounter = m_maxJumpTime;
-            m_playerRb.linearVelocity = new Vector2(m_playerRb.linearVelocity.x, m_jumpInitialForce);
+            m_playerRb.linearVelocity = new Vector2(m_playerRb.linearVelocity.x, m_jumpInitialForce + m_jumpUpgrade.getValue());
             m_currentZRotation -= 90f;
             StartCoroutine(RotateZSmooth(m_currentZRotation, m_rotationDuration));
 
@@ -232,7 +251,7 @@ public class PlayerController : MonoBehaviour
         {
             if (m_jumpTimeCounter > 0)
             {
-                m_playerRb.linearVelocity = new Vector2(m_playerRb.linearVelocity.x, m_jumpHoldForce);
+                m_playerRb.linearVelocity = new Vector2(m_playerRb.linearVelocity.x, m_jumpHoldForce + m_jumpUpgrade.getValue());
                 m_jumpTimeCounter -= Time.fixedDeltaTime;
             }
             else
