@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BulletSize
   m_EditorClassIdentifier: 
   upgradeName: Bullet size
-  description: Increase your bullet size
+  description: Increase 25% of your bullet size
   m_lvlAct: 0
   m_lvlMax: 3
   m_valueByValue: 0.25

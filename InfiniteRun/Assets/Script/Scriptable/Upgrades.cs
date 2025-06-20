@@ -2,12 +2,6 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ListUpgrade", menuName = "Scriptable Objects/ListUpgrade/ListUpgrade")]
-public class ListUpgrade : ScriptableObject
-{
-    public List<Upgrades> UpgradeList = new List<Upgrades>();
-}
-
 [CreateAssetMenu(fileName = "Upgrades", menuName = "Scriptable Objects/ListUpgrade/Upgrades")]
 public class Upgrades : ScriptableObject
 {

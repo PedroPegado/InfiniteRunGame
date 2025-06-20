@@ -10,9 +10,8 @@ public class AtributesInfos : MonoBehaviour
 
     private void Update()
     {
-        foreach (var upgrade in m_listUpgrade.UpgradeList)
-        {
-            print(upgrade);
-        }
+        m_dps.text = "lvl " + m_listUpgrade.UpgradeList[0].m_lvlAct.ToString() + "/3";
+        m_bullet.text = "lvl " + m_listUpgrade.UpgradeList[1].m_lvlAct.ToString() + "/3";
+        m_jump.text = "lvl " + m_listUpgrade.UpgradeList[2].m_lvlAct.ToString() + "/3";
     }
 }

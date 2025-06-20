@@ -66,6 +66,6 @@ public class DistanceCounter : MonoBehaviour
     {
         isPaused = false;
         m_upgradeCanvas.gameObject.SetActive(false);
-        //m_objectsSpawner.SetActive(true);
+        m_objectsSpawner.SetActive(true);
     }
 }

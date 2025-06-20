@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Jump
   m_EditorClassIdentifier: 
   upgradeName: Jump
-  description: Increase your jumps
+  description: Increase 50% of your jump force
   m_lvlAct: 0
   m_lvlMax: 3
   m_valueByValue: 0.5

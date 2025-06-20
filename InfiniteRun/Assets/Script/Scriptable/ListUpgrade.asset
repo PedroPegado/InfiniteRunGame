@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: d7a364cb9e6aee34d9e71448da806032, type: 3}
   m_Name: ListUpgrade
-  m_EditorClassIdentifier: Assembly-CSharp::ListUpgrade
+  m_EditorClassIdentifier: 
   UpgradeList:
   - {fileID: 11400000, guid: bced79426e66a9a4eb6fa656b386a09e, type: 2}
   - {fileID: 11400000, guid: 6af402e1248e816458ae1febf5ffd5ad, type: 2}
