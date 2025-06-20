@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Bullet Cadence
   description: Increase 25% of your bullet cadence
-  m_lvlAct: 0
+  m_lvlAct: 2
   m_lvlMax: 3
   m_valueByValue: 0.25

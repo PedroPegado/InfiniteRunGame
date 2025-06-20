@@ -81,16 +81,11 @@ public class UpgradeButtonSelection : MonoBehaviour
 
         DOTween.Kill(m_canvasTransform);
 
-        m_canvasTransform.DOAnchorPosY(1071f, 0.5f)
-            .SetEase(Ease.InBack)
-            .SetUpdate(true)
-            .OnComplete(() => {
-                if (m_distanceCounter != null)
-                {
-                    m_distanceCounter.ResumeGame();
-                    Time.timeScale = 1f;
-                }
-            });
+        if (m_distanceCounter != null)
+        {
+            m_distanceCounter.ResumeGame();
+            Time.timeScale = 1f;
+        }
     }
 
 }

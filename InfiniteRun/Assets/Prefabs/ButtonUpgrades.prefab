@@ -286,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_title: {fileID: 5095899463681133279}
   m_description: {fileID: 3750850279016650943}
-  m_distanceCounter: {fileID: 0}
+  m_distanceCounter: {fileID: 2622050629243300890, guid: 32ef44fba9c33c94281a9ff80a61e06a, type: 3}
 --- !u!95 &8211720609628201487
 Animator:
   serializedVersion: 7

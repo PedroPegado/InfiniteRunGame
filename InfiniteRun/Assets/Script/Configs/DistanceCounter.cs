@@ -11,9 +11,10 @@ public class DistanceCounter : MonoBehaviour
     private float timer = 0f;
     private float timePerMeter = 0.1f;
     public int m_upgradeAppear = 150;
-
-    [SerializeField] private Canvas m_upgradeCanvas;
     [SerializeField] private GameObject m_objectsSpawner;
+
+    [SerializeField] private GameObject m_upgradePrefab;
+    private GameObject m_currentUpgradeUI;
 
     private bool isPaused = false;
 
@@ -22,7 +23,7 @@ public class DistanceCounter : MonoBehaviour
         distance = 0;
         timer = 0f;
         UpdateUI();
-        m_upgradeCanvas.gameObject.SetActive(false);
+
     }
 
     void Update()
@@ -58,14 +59,21 @@ public class DistanceCounter : MonoBehaviour
     public void TriggerUpgradePause()
     {
         isPaused = true;
-        m_upgradeCanvas.gameObject.SetActive(true);
         Time.timeScale = 0f;
+
+        m_currentUpgradeUI = Instantiate(m_upgradePrefab, transform.parent);
     }
+
 
     public void ResumeGame()
     {
         isPaused = false;
-        m_upgradeCanvas.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+
+        if (m_currentUpgradeUI != null)
+            Destroy(m_currentUpgradeUI);
+
         m_objectsSpawner.SetActive(true);
     }
+
 }
