@@ -3269,8 +3269,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1249675953}
-  - {fileID: 225853954}
   - {fileID: 993381641}
+  - {fileID: 225853954}
   m_Father: {fileID: 1609666553}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3290,7 +3290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8529a798a28607449e4a80d674f53be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_listUpgrade: {fileID: 0}
+  m_dps: {fileID: 1249675954}
+  m_jump: {fileID: 993381642}
+  m_bullet: {fileID: 1249675954}
+  m_listUpgrade: {fileID: 11400000, guid: 8dce554d04d309047bb21324eae50e4f, type: 2}
 --- !u!1 &1441714871
 GameObject:
   m_ObjectHideFlags: 0
