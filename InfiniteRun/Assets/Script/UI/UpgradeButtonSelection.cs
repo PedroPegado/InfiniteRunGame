@@ -16,6 +16,8 @@ public class UpgradeButtonSelection : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("UpgradeButtonSelection iniciado");
+        Debug.Log($"Título: {m_title.text}, DistanceCounter está {(m_distanceCounter != null ? "presente" : "nulo")}");
         m_canvasTransform = GetComponent<RectTransform>();
         m_animator = GetComponent<Animator>();
 

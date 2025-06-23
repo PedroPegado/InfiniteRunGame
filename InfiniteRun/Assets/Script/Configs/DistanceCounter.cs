@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI; // ou TMPro se estiver usando TextMeshPro
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEditor.XR;
@@ -17,6 +17,8 @@ public class DistanceCounter : MonoBehaviour
     private GameObject m_currentUpgradeUI;
 
     private bool isPaused = false;
+
+    public Camera mainCamera;
 
     void Awake()
     {
@@ -38,18 +40,19 @@ public class DistanceCounter : MonoBehaviour
             distance += 1;
             UpdateUI();
 
-            if(distance % 30 == 0)
+            if ((distance + 30) % m_upgradeAppear == 0)
             {
                 m_objectsSpawner.SetActive(false);
             }
 
-            if(distance % 50 == 0)
+            if (distance % m_upgradeAppear == 0)
             {
                 TriggerUpgradePause();
                 break;
             }
         }
     }
+
 
     void UpdateUI()
     {
@@ -61,8 +64,22 @@ public class DistanceCounter : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0f;
 
-        m_currentUpgradeUI = Instantiate(m_upgradePrefab, transform.parent);
+        m_currentUpgradeUI = Instantiate(m_upgradePrefab);
+
+        var canvas = m_currentUpgradeUI.GetComponentInChildren<Canvas>();
+        if (canvas.renderMode == RenderMode.ScreenSpaceCamera && canvas.worldCamera == null)
+        {
+            canvas.worldCamera = mainCamera;
+        }
+
+        var randomUpgrade = m_currentUpgradeUI.GetComponent<RandomUpgrade>();
+        foreach (var button in randomUpgrade.m_buttonList)
+        {
+            button.m_distanceCounter = this;
+        }
     }
+
+
 
 
     public void ResumeGame()
